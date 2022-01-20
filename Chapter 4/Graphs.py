@@ -6,8 +6,8 @@ class Node:
 
     def __str__(self):
         print(self.data)
-        for node in self.adjacent:
-            print(node.data)
+        # for node in self.adjacent:
+        #     print(node.data)
         return ""
 
 class Graph:
@@ -16,6 +16,7 @@ class Graph:
 
     def insert(self,current):
         self.nodes.append(current)
+
     def join(self,current,newNode):
         current.adjacent.append(newNode)
 
@@ -30,8 +31,26 @@ class Graph:
         print(root.data)
         root.visited=True
         for node in root.adjacent:
-            if node.visited==False:
+            if not node.visited:
                 self.dfs(node)
+
+    def bfs(self,node):
+
+        queue=[]
+        queue.append(node)
+        node.visited=True
+        while len(queue)>0:
+            current=queue.pop(0)
+            # print("queue",queue)
+            print(current,end="=>")
+            for adjacent in current.adjacent:
+                if adjacent.visited==False:
+                    # print("data",adjacent.data)
+                    adjacent.visited = True
+                    queue.append(adjacent)
+
+
+
 
 
 
@@ -66,4 +85,5 @@ if __name__ == '__main__':
     g.join(fi, th)
     g.join(fi, f)
     # print(g)
-    g.dfs(th)
+    # g.dfs(th)
+    g.bfs(th)

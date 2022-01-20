@@ -10,10 +10,10 @@ def binarySeach_Iter(lst,item):
         print("mid:", mid)
         if lst[mid]==item:
             return mid
-        elif lst[mid]>item:
-            low=mid-1
         elif lst[mid]<item:
-            high=mid+ 1
+            low=mid+1
+        elif lst[mid]>item:
+            high=mid- 1
     return "not in list"
 
 def binarySearch_Recursive(lst,item,low,high):
@@ -31,6 +31,6 @@ def binarySearch_Recursive(lst,item,low,high):
         return "item not in list"
 
 if __name__ == '__main__':
-    # binarySeach_Iter([ 2, 3, 4, 10, 40 ],40)
-    print(binarySearch_Recursive([ 2, 3, 4, 10, 40 ],40,0,5))
+    binarySeach_Iter([ 2, 3, 4, 10, 40 ],40)
+    # print(binarySearch_Recursive([ 2, 3, 4, 10, 40 ],40,0,5))
 
