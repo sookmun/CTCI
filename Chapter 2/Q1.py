@@ -38,6 +38,7 @@ class LinkedList:
         while current.next != None:
             retstr+="->"+str(current.data)
             current=current.next
+        retstr+="->" +str(current.data)
         return retstr
     #answer to question 2.3
     def delete(self,node):
@@ -67,7 +68,20 @@ def test():
     lst.delete(node)
     print(lst)
 
-def kLast(k,lst):
+def palindrome(lst):
+    stack=[]
+    current=lst.head
+    while current is not None:
+        stack.append(current.data)
+        current=current.next
+    current = lst.head
+    for i in range(len(stack)):
+        item=stack.pop()
+        if current.data != item:
+            return False
+        current=current.next
+    return True
+def kLast(k,lst): #question 2.2
     #because i have a counter for size, index= size-k
     kth=lst.size-k+1
     current=lst.head
@@ -75,17 +89,45 @@ def kLast(k,lst):
         current=current.next
     return current
 
+def question1(lst): #question 2.1
+    repeats={}
+    current=lst.head
+    prev=None
+    print(lst)
+    while current is not None:
+        if repeats.get(current.data) is None:
+            repeats[current.data]=1
 
+        else:
+            prev.next=current.next
+            print(current.data)
+
+        prev = current
+        current=current.next
+        # print(current)
+    print(lst)
 
 if __name__ == '__main__':
     # test()
-    k = [1, 2, 3, 4, 5, 6, 7]
+    # k = [1, 2, 3, 4,  4,5, 6,3,1, 7]
+    # lst = LinkedList()
+    # head = Node(k[0])
+    # lst.head = head
+    # current = head
+    # for index in range(1,len(k)):
+    #     node=Node(k[index])
+    #     lst.append(node,current)
+    #     current=node
+    # # print(kLast(3,lst))
+    # question1(lst)
+    #for palindrome
+    k = [1, 2,2,3,0,3,2,2,1]
     lst = LinkedList()
     head = Node(k[0])
     lst.head = head
     current = head
-    for index in range(1,len(k)):
-        node=Node(k[index])
-        lst.append(node,current)
-        current=node
-    print(kLast(3,lst))
+    for index in range(1, len(k)):
+        node = Node(k[index])
+        lst.append(node, current)
+        current = node
+    print(palindrome(lst))
