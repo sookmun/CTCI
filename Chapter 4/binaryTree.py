@@ -93,3 +93,11 @@ class BinaryTree:
             self.post_order_aux(current.right)
             print(current)
 
+    def getHeight(self,current):
+        if current is None:
+            return 0
+        else:
+            left=self.getHeight(current.left)
+            right = self.getHeight(current.right)
+            return max(left,right) +1
+
