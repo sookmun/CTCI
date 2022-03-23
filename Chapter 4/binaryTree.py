@@ -41,9 +41,9 @@ class BinaryTree:
             current=Node(key,item)
             self.size+=1
         elif key<current.key:
-            self.insert_aux(current,key,item)
+            self.insert_aux(current.left,key,item)
         elif key>current.key:
-            self.insert_aux(current, key, item)
+            self.insert_aux(current.right, key, item)
         else:
             raise ValueError("Inserting Duplicate")
 
